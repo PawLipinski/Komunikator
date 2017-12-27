@@ -127,6 +127,13 @@ public partial class ProfilePage : System.Web.UI.Page
 
     protected void logout_Click(object sender, EventArgs e)
     {
+        QueryBox.Insert(
+              "Update Uzytkownicy SET status_uzytkownika = 0 where login_uzytkownika LIKE @login",
+             p =>
+             {
+                 p.Add("@login", SqlDbType.Text).Value = Session["login"];
+
+             });
         Session["login"] = null;
         Session["logged"] = false;
         Response.Redirect("Default.aspx");
