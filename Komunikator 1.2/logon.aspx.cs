@@ -111,7 +111,7 @@ public partial class logon : System.Web.UI.Page
                 Session["login"] = this.login.Text;
                 Session["logged"] = true;
                 QueryBox.Insert(
-               "Update Uzytkownicy SET status_uzytkownika = 1 where login_uzytkownika = '@login'",
+               "Update Uzytkownicy SET status_uzytkownika = 1 where login_uzytkownika LIKE @login",
               p =>
               {
                   p.Add("@login", SqlDbType.Text).Value = Session["login"];
