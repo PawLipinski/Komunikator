@@ -134,4 +134,6 @@ public partial class logon : System.Web.UI.Page
 
         return hash;
     }
+
+    //sprawdzenie brancha
 }
