@@ -14,7 +14,7 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" EnablePartialRendering="true" runat="server" />
         <div id="container">
-                
+                <asp:button runat="server" ID="LanguageChange" CssClass="SSButton" text="Zmień język!"/>
         <div id="LogonField" class="SSDiv">
             <h1 id ="TekstPowitalny">Zaloguj się do <a href="index.aspx" class="indexLink">Sprechen-Sprechen</a>!</h1>
             <div class ="inputLine"><h2 style="display:inline-block; margin-right:30px;">Login:</h2><asp:textbox runat="server" type="text" class="loginInput" ID="login"/></div>
