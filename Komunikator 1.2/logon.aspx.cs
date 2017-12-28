@@ -17,6 +17,15 @@ public partial class logon : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!HttpContext.Current.Response.Cookies.AllKeys.Contains("UserSettings"))
+        {
+            HttpCookie cookie = new HttpCookie("UserSettings");
+            cookie["language"] = "polish";
+            cookie["style"] = "light";
+            Response.Cookies.Add(cookie);
+        }
+
+        //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('"+Request.Cookies["UserSettings"]["language"] +"');", true);
     }
 
     protected void loginButton_Click(object sender, EventArgs e)
