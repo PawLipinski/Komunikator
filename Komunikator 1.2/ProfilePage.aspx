@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <link rel="stylesheet" href="IndexStyle.css" type="text/css"/>
+    <link runat="server" id="pagestyle" rel="stylesheet" href="IndexStyle.css" type="text/css"/>
     <script src="interaction.js"></script>
 
 </head>

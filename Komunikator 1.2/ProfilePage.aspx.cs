@@ -19,6 +19,17 @@ public partial class ProfilePage : System.Web.UI.Page
     {
         string login = Session["login"].ToString();
         string imie;
+
+        HttpCookie cookie = Request.Cookies["style"];
+        if (cookie == null)
+        {
+            cookie = new HttpCookie("style");
+            cookie.Value = "IndexStyle.css";
+            Response.Cookies.Add(cookie);
+        }
+
+        pagestyle.Href = "" + cookie.Value;
+
         string connectionString = ConfigurationManager.ConnectionStrings["Komunikator"].ToString();
         using (SqlConnection connection = new SqlConnection(connectionString))
         using (SqlCommand command = new SqlCommand("select * from Uzytkownicy where login_uzytkownika like @login", connection))

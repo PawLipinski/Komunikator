@@ -1,13 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Web.Security;
-using System.Data.Sql;
 using System.Data;
 using System.Security.Cryptography;
 using System.Text;
@@ -17,15 +10,17 @@ public partial class logon : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!HttpContext.Current.Response.Cookies.AllKeys.Contains("UserSettings"))
+
+        HttpCookie cookie = Request.Cookies["style"];
+        if (cookie == null)
         {
-            HttpCookie cookie = new HttpCookie("UserSettings");
-            cookie["language"] = "polish";
-            cookie["style"] = "light";
+            cookie = new HttpCookie("style");
+            cookie.Value = "IndexStyle.css";
             Response.Cookies.Add(cookie);
         }
 
-        //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('"+Request.Cookies["UserSettings"]["language"] +"');", true);
+        pagestyle.Href = "" + cookie.Value;
+        
     }
 
     protected void loginButton_Click(object sender, EventArgs e)
@@ -145,4 +140,22 @@ public partial class logon : System.Web.UI.Page
     }
 
     //branch master
+
+    protected void StyleChange_Click(object sender, EventArgs e)
+    {
+        HttpCookie cookie = Request.Cookies["style"];
+        if (cookie == null) return;
+        else if (cookie.Value == "IndexStyle.css")
+        {
+            cookie = new HttpCookie("style");
+            cookie.Value = "AlternateStyle.css";
+        }
+        else if (cookie.Value == "AlternateStyle.css")
+        {
+            cookie = new HttpCookie("style");
+            cookie.Value = "IndexStyle.css";
+        }
+        Response.Cookies.Add(cookie);
+        Response.Redirect("Logon.aspx");
+    }
 }

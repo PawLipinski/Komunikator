@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<link rel="stylesheet" href="IndexStyle.css" type="text/css"/>
+<link runat="server" id="pagestyle" rel="stylesheet" href="IndexStyle.css" type="text/css"/>
     <title></title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 
     <script src="interaction.js"></script>

@@ -11,3 +11,11 @@ function alertum() {
 
 }
 
+function changeStyle(sheet) {
+    document.getElementById('pagestyle').setAttribute('href', sheet);
+}
+
+function changeStyle() {
+    document.getElementById('pagestyle').setAttribute('href', document.cookie);
+    //document.cookie = "style=IndexStyle.css";
+}

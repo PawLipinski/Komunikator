@@ -14,6 +14,17 @@ public partial class ChatPage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        HttpCookie cookie = Request.Cookies["style"];
+        if (cookie == null)
+        {
+            cookie = new HttpCookie("style");
+            cookie.Value = "IndexStyle.css";
+            Response.Cookies.Add(cookie);
+        }
+
+        pagestyle.Href = "" + cookie.Value;
+
         intLogin = Session["interlocutor"].ToString();
         //etykieta.Text = intLogin;
         LoadConversation();

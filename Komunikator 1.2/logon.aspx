@@ -4,17 +4,19 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta name="description" content ="Masz tu spis moich ulubionych filmów. Korzystaj mądrze."/>
+    <meta name="description" content =""/>
 	<meta name="keywords" content= "film, kino, najlepsze filmy, top filmy"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
-    <link rel="stylesheet" href="IndexStyle.css" type="text/css"/>
+    <link runat="server" id="pagestyle" rel="stylesheet" href="IndexStyle.css" type="text/css"/>
     <title>Strona logowania</title>
+    <script src="interaction.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" EnablePartialRendering="true" runat="server" />
+        
         <div id="container">
-                <asp:button runat="server" ID="LanguageChange" CssClass="SSButton" text="Zmień język!"/>
+                <asp:button runat="server" ID="LanguageChange" CssClass="SSButton" text="Zmień język!" cssstyle="clear: left;"/>
+                <asp:button runat="server" ID="StyleChange" CssClass="SSButton" text="Zmień styl!"  cssstyle="clear: left;"  Onclick="StyleChange_Click"/>
         <div id="LogonField" class="SSDiv">
             <h1 id ="TekstPowitalny">Zaloguj się do <a href="index.aspx" class="indexLink">Sprechen-Sprechen</a>!</h1>
             <div class ="inputLine"><h2 style="display:inline-block; margin-right:30px;">Login:</h2><asp:textbox runat="server" type="text" class="loginInput" ID="login"/></div>
