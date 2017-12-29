@@ -7,6 +7,7 @@ DELETE Komunikaty;
 
 
 INSERT INTO Kontakty VALUES ('ppl','piesb', '20171128');
+INSERT INTO Kontakty VALUES ('piesb','ppl', '20171128');
 --INSERT INTO Kontakty VALUES ('aeiouy','galileusz84', '20171028');
 --INSERT INTO Kontakty VALUES ('ppl','kocham_placki', '20171128');
 --INSERT INTO Kontakty VALUES ('ppl','malpazgwozdziem', '20171128');

@@ -45,7 +45,7 @@
 
             </div>
             <div class="SSDiv" id="writeDiv">
-                <asp:TextBox runat="server" ID="textField"></asp:TextBox>
+                <asp:TextBox runat="server" ID="textField" AutoComplete="off"></asp:TextBox>
                 <asp:Button runat="server" ID="sendButton" Text="Wyślij" OnClick="sendButton_Click"/>
             </div>
           </div>
