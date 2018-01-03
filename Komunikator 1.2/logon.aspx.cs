@@ -156,6 +156,6 @@ public partial class logon : System.Web.UI.Page
             cookie.Value = "IndexStyle.css";
         }
         Response.Cookies.Add(cookie);
-        Response.Redirect("Logon.aspx");
+        Response.Redirect("logon.aspx");
     }
 }
