@@ -15,7 +15,7 @@
     <form id="form1" runat="server">
         
         <div id="container">
-                <asp:button runat="server" ID="LanguageChange" CssClass="SSButton" text="Zmień język!" cssstyle="clear: left;"/>
+                <asp:button runat="server" ID="LanguageChange" CssClass="SSButton" text="<%$ Resources: language, langChange %>" cssstyle="clear: left;" OnClick="LanguageChange_Click"/>
                 <asp:button runat="server" ID="StyleChange" CssClass="SSButton" text="Zmień styl!"  cssstyle="clear: left;"  Onclick="StyleChange_Click"/>
         <div id="LogonField" class="SSDiv">
             <h1 id ="TekstPowitalny">Zaloguj się do <a href="index.aspx" class="indexLink">Sprechen-Sprechen</a>!</h1>

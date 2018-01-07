@@ -5,6 +5,7 @@ using System.Data;
 using System.Security.Cryptography;
 using System.Text;
 using System.Collections;
+using System.Globalization;
 
 public partial class logon : System.Web.UI.Page
 {
@@ -157,5 +158,18 @@ public partial class logon : System.Web.UI.Page
         }
         Response.Cookies.Add(cookie);
         Response.Redirect("Logon.aspx");
+    }
+
+    protected void LanguageChange_Click(object sender, EventArgs e)
+    {
+        if (System.Threading.Thread.CurrentThread.CurrentUICulture.Equals("pl"))
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+        }
+        else if (System.Threading.Thread.CurrentThread.CurrentUICulture.Equals("en"))
+        {
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pl");
+        }
+
     }
 }
