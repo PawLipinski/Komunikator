@@ -6,21 +6,36 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Collections;
 using System.Globalization;
+using System.Threading;
 
-public partial class logon : System.Web.UI.Page
+public partial class logon : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        HttpCookie cookie = Request.Cookies["style"];
-        if (cookie == null)
+        HttpCookie cookie1 = Request.Cookies["style"];
+        HttpCookie cookie2 = Request.Cookies["language"];
+
+        if (cookie1 == null)
         {
-            cookie = new HttpCookie("style");
-            cookie.Value = "IndexStyle.css";
-            Response.Cookies.Add(cookie);
+            cookie1 = new HttpCookie("style");
+            cookie1.Value = "IndexStyle.css";
+            Response.Cookies.Add(cookie1);
         }
 
-        pagestyle.Href = "" + cookie.Value;
+        pagestyle.Href = "" + cookie1.Value;
+
+        if (cookie2 == null)
+        {
+            cookie2 = new HttpCookie("language");
+            cookie2.Value = "pl";
+            Response.Cookies.Add(cookie2);
+        }
+        else
+        {
+            Thread.CurrentThread.CurrentCulture =
+            CultureInfo.CreateSpecificCulture(cookie2.Value);
+        }
         
     }
 
@@ -157,19 +172,24 @@ public partial class logon : System.Web.UI.Page
             cookie.Value = "IndexStyle.css";
         }
         Response.Cookies.Add(cookie);
-        Response.Redirect("Logon.aspx");
+        Response.Redirect("logon.aspx");
     }
 
     protected void LanguageChange_Click(object sender, EventArgs e)
     {
-        if (System.Threading.Thread.CurrentThread.CurrentUICulture.Equals("pl"))
+        HttpCookie cookie = Request.Cookies["language"];
+        if (cookie == null) return;
+        else if (cookie.Value == "pl")
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+            cookie = new HttpCookie("language");
+            cookie.Value = "en";
         }
-        else if (System.Threading.Thread.CurrentThread.CurrentUICulture.Equals("en"))
+        else if (cookie.Value == "en")
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("pl");
+            cookie = new HttpCookie("language");
+            cookie.Value = "pl";
         }
-
+        Response.Cookies.Add(cookie);
+        Response.Redirect("logon.aspx");
     }
 }
