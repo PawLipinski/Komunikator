@@ -12,7 +12,7 @@
     <script src="interaction.js"></script>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" defaultbutton="loginButton">
         
         <div id="container">
                 <asp:button runat="server" ID="LanguageChange" CssClass="SSButton" text="<%$ Resources: langChange %>" cssstyle="clear: left;" OnClick="LanguageChange_Click"/>
