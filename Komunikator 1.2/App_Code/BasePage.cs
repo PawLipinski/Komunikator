@@ -20,15 +20,17 @@ public class BasePage: System.Web.UI.Page
         //    HttpCookie cookie = Request.Cookies["language"];
         //    Session["lang"] = Request["lang"];
         //}
+        //string lang = Convert.ToString(Request.Cookies["language"].Value);
+        string lang = Convert.ToString(Request["language"]);
+
         if (Request.Cookies["language"] == null)
         {
             HttpCookie cookie = new HttpCookie("language");
             cookie.Value = "pl";
             Response.Cookies.Add(cookie);
         }
-        string lang = Convert.ToString(Request.Cookies["language"].Value);
-            //ClientScript.RegisterStartupScript(GetType(), "alert", "alert(\'"+Request.Cookies["language"].Value+"\');", true);
-            string culture = string.Empty;
+        
+        string culture = string.Empty;
             
             if(lang.ToLower().CompareTo("pl") == 0 ||string.IsNullOrEmpty(culture))
             {               
@@ -39,10 +41,7 @@ public class BasePage: System.Web.UI.Page
             {
                 culture = "en-US";
             }
-            //if (lang.ToLower().CompareTo("pl") == 0)
-            //{
-            //    culture = "pl";
-            //}
+
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(culture);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
 

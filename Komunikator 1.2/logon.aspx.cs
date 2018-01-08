@@ -12,31 +12,40 @@ public partial class logon : BasePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        //ClientScript.RegisterStartupScript(GetType(), "hwa", "alert(\'" +lang+"\');", true);
 
-        HttpCookie cookie1 = Request.Cookies["style"];
-        HttpCookie cookie2 = Request.Cookies["language"];
+        HttpCookie styleCookie = Request.Cookies["style"];
+        HttpCookie languageCookie = Request.Cookies["language"];
 
-        if (cookie1 == null)
+        if (styleCookie == null)
         {
-            cookie1 = new HttpCookie("style");
-            cookie1.Value = "IndexStyle.css";
-            Response.Cookies.Add(cookie1);
+            styleCookie = new HttpCookie("style");
+            styleCookie.Value = "IndexStyle.css";
+            Response.Cookies.Add(styleCookie);
         }
 
-        pagestyle.Href = "" + cookie1.Value;
+        pagestyle.Href = "" + styleCookie.Value;
 
-        if (cookie2 == null)
+        string lang = Request.QueryString["language"];
+
+        if (lang != null)
         {
-            cookie2 = new HttpCookie("language");
-            cookie2.Value = "pl";
-            Response.Cookies.Add(cookie2);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(lang);
         }
         else
         {
-            Thread.CurrentThread.CurrentCulture =
-            CultureInfo.CreateSpecificCulture(cookie2.Value);
+            //if (languageCookie == null)
+            //{
+            //    languageCookie = new HttpCookie("language");
+            //    languageCookie.Value = "pl";
+            //    Response.Cookies.Add(languageCookie);
+            //}
+            //else
+            //{
+            //    Thread.CurrentThread.CurrentCulture =
+            //    CultureInfo.CreateSpecificCulture(languageCookie.Value);
+            //}
         }
-        
     }
 
     protected void loginButton_Click(object sender, EventArgs e)
@@ -177,19 +186,30 @@ public partial class logon : BasePage
 
     protected void LanguageChange_Click(object sender, EventArgs e)
     {
+        var uriBuilder = new UriBuilder(Request.Url.AbsoluteUri);
+        var paramValues = HttpUtility.ParseQueryString(uriBuilder.Query);
+
+        if (paramValues.Get("language") != null) paramValues.Remove("language");
+
         HttpCookie cookie = Request.Cookies["language"];
         if (cookie == null) return;
         else if (cookie.Value == "pl")
         {
             cookie = new HttpCookie("language");
             cookie.Value = "en";
+            paramValues.Add("language", "en");
         }
         else if (cookie.Value == "en")
         {
             cookie = new HttpCookie("language");
             cookie.Value = "pl";
+            paramValues.Add("language", "pl");
         }
         Response.Cookies.Add(cookie);
-        Response.Redirect("logon.aspx");
+        //Response.Redirect("logon.aspx");
+
+        uriBuilder.Query = paramValues.ToString();
+
+        Response.Redirect(uriBuilder.Uri.ToString());
     }
 }

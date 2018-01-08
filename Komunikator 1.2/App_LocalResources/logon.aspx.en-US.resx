@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="aboutPage" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="botText" xml:space="preserve">
+    <value>You have no account yet?</value>
+  </data>
   <data name="langChange" xml:space="preserve">
-    <value>Change language!</value>
+    <value>Użyj polskiego!</value>
+  </data>
+  <data name="logButton" xml:space="preserve">
+    <value>LOG</value>
+  </data>
+  <data name="logPass" xml:space="preserve">
+    <value>Password: </value>
+  </data>
+  <data name="logText" xml:space="preserve">
+    <value>Log in to </value>
+  </data>
+  <data name="registerLink" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="registerRemainText" xml:space="preserve">
+    <value> to keep in touch with friends!</value>
+  </data>
+  <data name="stylChange" xml:space="preserve">
+    <value>Change style!</value>
   </data>
 </root>
