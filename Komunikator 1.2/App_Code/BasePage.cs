@@ -23,12 +23,25 @@ public class BasePage: System.Web.UI.Page
         //string lang = Convert.ToString(Request.Cookies["language"].Value);
         string lang = Convert.ToString(Request["language"]);
 
-        if (Request.Cookies["language"] == null)
+        if (lang==null)
         {
             HttpCookie cookie = new HttpCookie("language");
-            cookie.Value = "pl";
-            Response.Cookies.Add(cookie);
+            
+            if (Request.Cookies["language"] == null)
+            {
+                cookie.Value = "pl";
+                Response.Cookies.Add(cookie);
+                if (lang==null)
+                {
+                    lang = cookie.Value;
+                }
+            }
+            else
+            {
+                lang = cookie.Value;
+            }
         }
+
         
         string culture = string.Empty;
             
