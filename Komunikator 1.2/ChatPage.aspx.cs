@@ -75,9 +75,10 @@ public partial class ChatPage : System.Web.UI.Page
         }
     }
 
-    protected void sendButton_Click(object sender, EventArgs e)
+    [System.Web.Services.WebMethod(EnableSession = true)]
+    public static void SendMessage(string text)
     {
-        string communicate = textField.Text.ToString();
+        //string communicate = textField.Text.ToString();
 
         using (SqlConnection conn = new SqlConnection())
         {
@@ -86,20 +87,20 @@ public partial class ChatPage : System.Web.UI.Page
             conn.Open();
             var sqlcommand = new SqlCommand("INSERT INTO Komunikaty VALUES (@nadawca, @odbiorca, @data, @komunikat)", conn);
 
-            sqlcommand.Parameters.AddWithValue("@nadawca", this.Session["login"].ToString());
-            sqlcommand.Parameters.AddWithValue("@odbiorca", this.Session["interlocutor"].ToString());
+            sqlcommand.Parameters.AddWithValue("@nadawca", HttpContext.Current.Session["login"].ToString());
+            sqlcommand.Parameters.AddWithValue("@odbiorca", HttpContext.Current.Session["interlocutor"].ToString());
             DateTime myDateTime = DateTime.Now;
 
             sqlcommand.Parameters.AddWithValue("@data", myDateTime.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            sqlcommand.Parameters.AddWithValue("@komunikat", communicate);
+            sqlcommand.Parameters.AddWithValue("@komunikat", text);
 
 
             try
             {
                 sqlcommand.ExecuteNonQuery();
-                ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Pomyślnie zarejestrowano!');", true);
+                //ClientScript.RegisterStartupScript(GetType(), "alert", "alert('Pomyślnie zarejestrowano!');", true);
                 //ScriptManager.RegisterStartupScript(this, typeof(string), "Error","alert('hi');", true);
-                Response.Redirect(Request.RawUrl);
+                //Response.Redirect(Request.RawUrl);
             }
             catch
             {
