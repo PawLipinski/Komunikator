@@ -13,7 +13,9 @@
 
     <script type="text/javascript">
         setInterval(function () {
-            /// call your function here
+            LoadMessages();
+        }, 2000);
+
         function LoadMessages() {
             $.ajax({
                 type: "POST",
@@ -28,7 +30,6 @@
                 }
             });
         }
-        }, 2000);
 
         function OnSuccess(response) {
             var xmlDoc = $.parseXML(response.d);
