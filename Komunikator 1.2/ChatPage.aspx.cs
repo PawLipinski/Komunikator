@@ -256,7 +256,7 @@ public partial class ChatPage : System.Web.UI.Page
 
     protected void loadButton_Click(object sender, EventArgs e)
     {
-        System.IO.File.WriteAllLines(@"D:\text.txt", LoadMessages().Split('\n'));
+        //System.IO.File.WriteAllLines(@"D:\text.txt", LoadMessages().Split('\n'));
     }
 
     private void BindDummyRow()

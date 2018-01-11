@@ -6,9 +6,11 @@
 <head runat="server">
 <link runat="server" id="pagestyle" rel="stylesheet" href="IndexStyle.css" type="text/css"/>
     <title></title>
+
     <script src="interaction.js"></script>
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
 <script type="text/javascript">
     function LoadMessages() {
         $.ajax({
@@ -37,7 +39,7 @@
             $("td", row).eq(1).html($(this).find("data_dodania").text());
             $("td", row).eq(2).html($(this).find("komunikat").text());
             $("[id*=chatTable]").append(row);
-            row = $("[id*=gvCustomers] tr:last-child").clone(true);
+            row = $("[id*=chatTable] tr:last-child").clone(true);
         });
     };
 </script>
